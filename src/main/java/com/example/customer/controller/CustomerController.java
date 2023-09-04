@@ -12,10 +12,22 @@ public class CustomerController {
 
   @Autowired
   ICustomerService customerService;
+
+  /**
+   * This API is used to get the customer
+   * @param id
+   * @return
+   */
   @GetMapping("/{id}")
   public ResponseEntity<Customer> getCustomer(@PathVariable Long id) {
     return ResponseEntity.ok(customerService.getCustomer(id));
   }
+
+  /**
+   * @Description This API is used to save customer
+   * @param customer
+   * @return
+   */
   @PostMapping("/")
   public Customer saveCustomer(@RequestBody Customer customer) {
     return customerService.saveCustomer(customer);

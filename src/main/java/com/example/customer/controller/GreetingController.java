@@ -15,6 +15,11 @@ public class GreetingController {
 
     @Value("${spring.application.name}")
     private String appName;
+
+    /**
+     * This API is used to get the Application name
+     * @return Application Name
+     */
     @GetMapping("/")
     public String greeting() {
         return String.format(
