@@ -15,7 +15,6 @@ public class RabbitHelper {
 
     @Autowired
     private RabbitTemplate rabbitTemplate;
-
     @Bean
     public Queue emailQueue() {
         return new Queue(emailQueue, true);
