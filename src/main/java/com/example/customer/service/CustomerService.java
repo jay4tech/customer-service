@@ -2,8 +2,6 @@ package com.example.customer.service;
 
 import com.example.customer.entity.Customer;
 import com.example.customer.repository.ICustomerRepository;
-import com.example.customer.util.RabbitHelper;
-import com.example.customer.util.UtilityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +13,6 @@ public class CustomerService implements ICustomerService{
     @Autowired
     ICustomerRepository customerRepository;
 
-    @Autowired
-    RabbitHelper rabbitHelper;
     @Override
     public Customer getCustomer(Long id) {
         return customerRepository.findById(id).orElse(null);
@@ -25,7 +21,6 @@ public class CustomerService implements ICustomerService{
     @Override
     public Customer saveCustomer(Customer customer) {
         Customer customerResponse = customerRepository.save(customer);
-        rabbitHelper.sendEmailNotification(UtilityMapper.modelToString(customerResponse));
         return customerResponse;
     }
 
